@@ -1,5 +1,8 @@
+require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
-const token = '5861953499:AAHOSNaGSk9m2tQp1Ozz_vmARxT9HPh2xD4';
+const token = process.env.TELEGRAM_TOKEN;
+const TelegramBot = require('node-telegram-bot-api');
+
 
 // Укажите публичный адрес из ngrok в качестве URL-адреса вебхука
 const url = 'https://d61d-184-22-190-71.ngrok-free.app';
