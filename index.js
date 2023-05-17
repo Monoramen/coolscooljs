@@ -1,15 +1,49 @@
+require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
-const token = '5861953499:AAHOSNaGSk9m2tQp1Ozz_vmARxT9HPh2xD4';
-
+const token = process.env.TELEGRAM_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 
 bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
-    bot.sendMessage(chatId, 'Привет, я эхо-бот. Я буду повторять все сообщения, которые ты мне отправишь.');
-    });
-
-bot.on('message', (msg) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, msg.text);
-    });
+    const keyboard = {
+      resize_keyboard: true,
+      one_time_keyboard: true,
+      keyboard: [
+        ['Программа 📚', 'Место 📍'],
+        ['Цена 💰', 'Задать вопрос 🤔'],
+        ['Подать заявку 📝']
+      ]
+    };
     
+    bot.sendMessage(chatId, 'Выберите действие:', {
+      reply_markup: JSON.stringify(keyboard)
+    });
+  });
+  
+  bot.on('message', (msg) => {
+    const chatId = msg.chat.id;
+    const text = msg.text;
+  
+    // Обработка выбора кнопок
+    switch (text) {
+      case 'Программа 📚':
+        // Действия при выборе кнопки "Программа"
+        break;
+      case 'Место 📍':
+        // Действия при выборе кнопки "Место"
+        break;
+      case 'Цена 💰':
+        // Действия при выборе кнопки "Цена"
+        break;
+      case 'Задать вопрос 🤔':
+        // Действия при выборе кнопки "Задать вопрос"
+        break;
+      case 'Подать заявку 📝':
+        // Действия при выборе кнопки "Подать заявку"
+        break;
+      default:
+        // Действия при получении другого текстового сообщения
+        break;
+    }
+  });
+  
